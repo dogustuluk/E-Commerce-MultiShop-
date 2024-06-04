@@ -6,6 +6,7 @@ using MultiShop.Catalog.Settings;
 
 namespace MultiShop.Catalog.Services.ProductServices
 {
+    [Service(ServiceLifetime.Scoped)]
     public class ProductService : IProductService
     {
         private readonly IMapper _mapper;

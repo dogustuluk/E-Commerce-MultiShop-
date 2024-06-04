@@ -7,6 +7,7 @@ using MultiShop.Catalog.Settings;
 
 namespace MultiShop.Catalog.Services.ProductDetailServices
 {
+    [Service(ServiceLifetime.Scoped)]
     public class ProductDetailService : IProductDetailService
     {
         private readonly IMongoCollection<ProductDetail> _productDetailCollection;

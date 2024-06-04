@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Options;
+using MultiShop.Catalog.Extensions;
 using MultiShop.Catalog.Services.CategoryServices;
 using MultiShop.Catalog.Services.ProductDetailServices;
 using MultiShop.Catalog.Services.ProductImageServices;
@@ -9,10 +10,12 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 //services.
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
-builder.Services.AddScoped<IProductImageService, ProductImageService>();
-builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddServicesFromAttributes(Assembly.GetExecutingAssembly());
+
+//builder.Services.AddScoped<ICategoryService, CategoryService>();
+//builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
+//builder.Services.AddScoped<IProductImageService, ProductImageService>();
+//builder.Services.AddScoped<IProductService, ProductService>();
 
 //mapper
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

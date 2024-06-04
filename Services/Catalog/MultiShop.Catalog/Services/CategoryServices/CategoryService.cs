@@ -6,6 +6,7 @@ using MultiShop.Catalog.Settings;
 
 namespace MultiShop.Catalog.Services.CategoryServices
 {
+    [Service(ServiceLifetime.Scoped)]
     public class CategoryService : ICategoryService
     {
         private readonly IMongoCollection<Category> _categoryCollection;
