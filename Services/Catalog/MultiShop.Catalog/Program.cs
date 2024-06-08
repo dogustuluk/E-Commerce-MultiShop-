@@ -1,3 +1,5 @@
+using Microsoft.CodeAnalysis;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using MultiShop.Catalog.Extensions;
 using MultiShop.Catalog.Services.CategoryServices;
@@ -9,8 +11,15 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+//generator.Initialize(new GeneratorInitializationContext());
+//generator.Execute(new GeneratorExecutionContext());
+//builder.Services.AddGeneratedServices();
+
+
 //services.
 builder.Services.AddServicesFromAttributes(Assembly.GetExecutingAssembly());
+
 
 //builder.Services.AddScoped<ICategoryService, CategoryService>();
 //builder.Services.AddScoped<IProductDetailService, ProductDetailService>();
@@ -28,6 +37,8 @@ builder.Services.AddScoped<IDatabaseSettings>(sp =>
 });
 
 // Add services to the container.
+//var generator = new DependencyInjectionGenerator();
+//generator.Initialize(new GeneratorInitializationContext());
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -48,5 +59,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Register services with the DI container using generator
+//var generator = new DependencyInjectionGenerator();
+//generator.Initialize(new GeneratorInitializationContext());
+//generator.Execute(new GeneratorExecutionContext());
 
 app.Run();

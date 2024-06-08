@@ -7,12 +7,12 @@ using MultiShop.Catalog.Settings;
 namespace MultiShop.Catalog.Services.CategoryServices
 {
     [Service(ServiceLifetime.Scoped)]
-    public class CategoryService : ICategoryService
+    public class CategoryService2 : ICategoryService
     {
         private readonly IMongoCollection<Category> _categoryCollection;
         private readonly IMapper _mapper;
 
-        public CategoryService(IMapper mapper, IDatabaseSettings _databaseSettings)
+        public CategoryService2(IMapper mapper, IDatabaseSettings _databaseSettings)
         {
             var client = new MongoClient(_databaseSettings.ConnectionStrings);
             var database = client.GetDatabase(_databaseSettings.DatabaseName);

@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MultiShop.Catalog.Dtos.CategoryDtos;
 using MultiShop.Catalog.Dtos.ProductDtos;
+using MultiShop.Catalog.Entities;
+using MultiShop.Catalog.Enums;
+using MultiShop.Catalog.Filters;
 using MultiShop.Catalog.Services.ProductServices;
 
 namespace MultiShop.Catalog.Controllers
@@ -31,6 +35,7 @@ namespace MultiShop.Catalog.Controllers
         }
 
         [HttpPost]
+        [CheckData<Product>(typeof(CreateProductDto), new[] { "ProductName", "ProductDescription" }, checkTypes: CheckType.Existing)]
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
             await _productService.CreateProductAsync(createProductDto);

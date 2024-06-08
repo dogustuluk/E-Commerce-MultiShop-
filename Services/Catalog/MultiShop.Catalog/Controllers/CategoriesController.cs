@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MultiShop.Catalog.Dtos.CategoryDtos;
+using MultiShop.Catalog.Entities;
+using MultiShop.Catalog.Enums;
+using MultiShop.Catalog.Filters;
 using MultiShop.Catalog.Services.CategoryServices;
 
 namespace MultiShop.Catalog.Controllers
@@ -31,6 +34,8 @@ namespace MultiShop.Catalog.Controllers
         }
 
         [HttpPost]
+        //[CheckData<Category>(typeof(CreateCategoryDto), "CategoryName", checkTypes:CheckType.Existing)]
+        [CheckData<Category>(typeof(CreateCategoryDto), new[] { "CategoryName", "CategoryName" }, checkTypes: CheckType.Existing)]
         public async Task<IActionResult> CreateCategory(CreateCategoryDto createCategoryDto)
         {
             await _categoryService.CreateCategoryAsync(createCategoryDto);
